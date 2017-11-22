@@ -1,6 +1,3 @@
 [submodule "doctrine"]
 	path = doctrine
 	url = git://github.com/doctrine/doctrine2.git
-[submodule "welcome-to-github"]
-	path = welcome-to-github
-	url = git://github.com/cursor-education/welcome-to-github.git
