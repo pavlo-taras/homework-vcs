@@ -1,0 +1,405 @@
+Task 1
+MBP-pavlo:~ pavlo$ mkdir homework-vcs
+MBP-pavlo:homework-vcs pavlo$ cd homework-vcs
+MBP-pavlo:homework-vcs pavlo$ git clone git@github.com:pavlo-taras/homework-vcs.git
+MBP-pavlo:homework-vcs pavlo$ ls
+README.md
+
+MBP-pavlo:homework-vcs pavlo$ git status
+On branch master
+Your branch is up-to-date with 'origin/master'.
+nothing to commit, working directory clean
+
+MBP-pavlo:homework-vcs pavlo$ git checkout -b architecture
+Switched to a new branch 'architecture'
+
+MBP-pavlo:homework-vcs pavlo$ mkdir assets uploads
+MBP-pavlo:homework-vcs pavlo$ touch index.html
+MBP-pavlo:homework-vcs pavlo$ touch assets/.keep uploads/.keep
+MBP-pavlo:homework-vcs pavlo$ git status
+On branch architecture
+
+Initial commit
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+	  assets/
+	  index.html
+	  uploads/
+nothing added to commit but untracked files present (use "git add" to track)
+
+MBP-pavlo:homework-vcs pavlo$ git add .
+MBP-pavlo:homework-vcs pavlo$ git commit -m "Added new file: index.html, and new folders: assets and uploads"
+[architecture (root-commit) 8825c3c] Added new file - index.html, and new folders: assets and uploads
+ 3 files changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 assets/.keep
+ create mode 100644 index.html
+ create mode 100644 uploads/.keep
+
+MBP-pavlo:homework-vcs pavlo$ touch assets/all.js assets/css.js
+MBP-pavlo:homework-vcs pavlo$ git add assets/*
+MBP-pavlo:homework-vcs pavlo$ git commit -m "Added new file: all.js and css.js in folder assets"
+[architecture d24acb0]   Added new file: all.js and css.js in folder assets
+ 2 files changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 assets/all.js
+ create mode 100644 assets/css.js
+
+MBP-pavlo:homework-vcs pavlo$ mkdir uploads/new
+MBP-pavlo:homework-vcs pavlo$ touch uploads/1.txt uploads/new/1.txt
+
+MBP-pavlo:homework-vcs pavlo$ touch .gitignore
+MBP-pavlo:homework-vcs pavlo$ vim .gitignore
+MBP-pavlo:homework-vcs pavlo$ cat .gitignore
+uploads/*
+
+MBP-pavlo:homework-vcs pavlo$ git add .gitignore 
+MBP-pavlo:homework-vcs pavlo$ git commit -m "Add gitignore file"
+
+MBP-pavlo:homework-vcs pavlo$ git checkout master
+Switched to branch 'master'
+Your branch is up-to-date with 'origin/master'.
+
+MBP-pavlo:homework-vcs pavlo$ git merge architecture
+Updating 9511985..10cd741
+Fast-forward
+ .gitignore    | 2 ++
+ assets/.keep  | 0
+ assets/all.js | 0
+ assets/css.js | 0
+ index.html    | 0
+ uploads/.keep | 0
+ 6 files changed, 2 insertions(+)
+ create mode 100644 .gitignore
+ create mode 100644 assets/.keep
+ create mode 100644 assets/all.js
+ create mode 100644 assets/css.js
+ create mode 100644 index.html
+ create mode 100644 uploads/.keep
+
+MBP-pavlo:homework-vcs pavlo$ git branch
+  architecture
+* master
+
+MBP-pavlo:homework-vcs pavlo$ git branch -d architecture
+Deleted branch architecture (was 10cd741).
+
+MBP-pavlo:homework-vcs pavlo$ git branch
+* master
+
+--------------------------------------------------------------------------------
+Task 2
+MBP-pavlo:homework-vcs pavlo$ git branch new-branch
+MBP-pavlo:homework-vcs pavlo$ git branch
+* master
+  new-branch
+
+MBP-pavlo:homework-vcs pavlo$ vim index.html
+MBP-pavlo:homework-vcs pavlo$ cat index.html
+<h1>Hello cursor</h2>
+
+MBP-pavlo:homework-vcs pavlo$ git add index.html 
+MBP-pavlo:homework-vcs pavlo$ git commit -m "Add changes in index.html"
+[master d97fcf3] Add chages in index.html
+ 1 file changed, 1 insertion(+)
+
+MBP-pavlo:homework-vcs pavlo$ touch style.css
+MBP-pavlo:homework-vcs pavlo$ git add style.css 
+MBP-pavlo:homework-vcs pavlo$ git commit -m "Add new file style.css"
+[master e870e25] Add new file style.css
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 style.css
+
+MBP-pavlo:homework-vcs pavlo$ vim index.html
+MBP-pavlo:homework-vcs pavlo$ cat index.html
+<h1>Hello cursor</h1>
+
+MBP-pavlo:homework-vcs pavlo$ git add index.html
+MBP-pavlo:homework-vcs pavlo$ git commit -m "Fixed index.html"
+[master e52c47e] Fixed index.html
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+MBP-pavlo:homework-vcs pavlo$ git checkout new-branch
+Switched to branch 'new-branch'
+
+MBP-pavlo:homework-vcs pavlo$ git rebase master
+First, rewinding head to replay your work on top of it...
+Fast-forwarded new-branch to master.
+
+MBP-pavlo:homework-vcs pavlo$ vim index.html
+MBP-pavlo:homework-vcs pavlo$ cat index.html
+<h1>Hello cursor</h1>
+<h2>I am a student</h2>
+
+MBP-pavlo:homework-vcs pavlo$ git add index.html
+MBP-pavlo:homework-vcs pavlo$ git commit -m "Added new tag in the file index.html"
+[new-branch 0f50c9a] Added new tag in the file index.html
+ 1 file changed, 1 insertion(+)
+
+MBP-pavlo:homework-vcs pavlo$ vim style.css
+MBP-pavlo:homework-vcs pavlo$ cat style.css
+h1 {color: red;}
+
+h2 {color: blue;}
+
+MBP-pavlo:homework-vcs pavlo$ git add style.css
+MBP-pavlo:homework-vcs pavlo$ git commit -m "Added style for tag h2"
+[new-branch f349b64] Added style for tag h2
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+MBP-pavlo:homework-vcs pavlo$ git checkout master
+MBP-pavlo:homework-vcs pavlo$ git merge new-branch
+Updating e52c47e..f349b64
+Fast-forward
+ index.html | 1 +
+ style.css  | 3 +++
+ 2 files changed, 4 insertions(+)
+
+MBP-pavlo:homework-vcs pavlo$ git branch -d new-branch
+Deleted branch new-branch (was f349b64).
+
+--------------------------------------------------------------------------------
+Task 3
+MBP-pavlo:homework-vcs pavlo$ vim index.html
+MBP-pavlo:homework-vcs pavlo$ cat index.html
+<h1>Hello cursor</h1>
+<h2>I am a student</h2>
+<h3>VCS</h3>
+
+MBP-pavlo:homework-vcs pavlo$ git add index.html
+MBP-pavlo:homework-vcs pavlo$ git commit -m "Change file index.html"
+[master 0bb8458] Change file index.html
+ 1 file changed, 1 insertion(+)
+
+MBP-pavlo:homework-vcs pavlo$ vim style.css
+MBP-pavlo:homework-vcs pavlo$ cat style.css
+h1 {color: red;}
+
+h2 {color: blue;}
+
+h3 {color: green;}
+ 
+MBP-pavlo:homework-vcs pavlo$ git add style.css
+MBP-pavlo:homework-vcs pavlo$ git commit -m "Change text color for tag H3"
+[master 3a055c1] Change text color for tag H3
+1 file changed, 2 insertions(+)
+
+MBP-pavlo:homework-vcs pavlo$ git tag v0.1-lw
+MBP-pavlo:homework-vcs pavlo$ git tag
+v0.1-lw
+
+MBP-pavlo:homework-vcs pavlo$ git push origin v0.1-lw
+
+--------------------------------------------------------------------------------
+Task 4
+git submodule add git://github.com/cursor-education/welcome-to-github.git welcome-to-github
+Cloning into 'welcome-to-github'...
+remote: Counting objects: 1288, done.
+remote: Total 1288 (delta 0), reused 0 (delta 0), pack-reused 1288
+Receiving objects: 100% (1288/1288), 10.67 MiB | 2.93 MiB/s, done.
+Resolving deltas: 100% (612/612), done.
+Checking connectivity... done.
+
+MBP-pavlo:homework-vcs pavlo$ git submodule status
+ 7e3a8ca1a1fa83eed8d13eba56dda75e1ab010ae welcome-to-github (heads/master)
+
+MBP-pavlo:homework-vcs pavlo$ git status
+On branch master
+Your branch is ahead of 'origin/master' by 9 commits.
+  (use "git push" to publish your local commits)
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+    new file:   .gitmodules
+    new file:   welcome-to-github
+
+MBP-pavlo:homework-vcs pavlo$ git commit -m "Added Education/Welcome-To-Github submodule"
+[master d4dfbf7] Added Education/Welcome-To-Github submodule
+  2 files changed, 7 insertions(+)
+  create mode 100644 .gitmodules
+  create mode 160000 welcome-to-github
+
+MBP-pavlo:homework-vcs pavlo$ git push
+Counting objects: 3, done.
+Delta compression using up to 8 threads.
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 452 bytes | 0 bytes/s, done.
+Total 3 (delta 1), reused 0 (delta 0)
+remote: Resolving deltas: 100% (1/1), completed with 1 local object.
+To git@github.com:pavlo-taras/homework-vcs.git
+    54029ef..d4dfbf7  master -> master
+
+--------------------------------------------------------------------------------
+Task 5    https://pavlo-taras.github.io/homework-vcs/
+MBP-pavlo:homework-vcs pavlo$ git checkout -b gh-pages
+Switched to a new branch 'gh-pages'
+
+MBP-pavlo:homework-vcs pavlo$ vim index.html
+MBP-pavlo:homework-vcs pavlo$ cat index.html
+<h1>Hello cursor</h1>
+<h2>I am a student</h2>
+<h3>VCS</h3>
+
+<h1>gh-pages</h1>
+
+MBP-pavlo:homework-vcs pavlo$ git push --set-upstream origin gh-pages
+Warning: Permanently added the RSA host key for IP address '192.30.253.113' to the list of known hosts.
+Counting objects: 3, done.
+Delta compression using up to 8 threads.
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 342 bytes | 0 bytes/s, done.
+Total 3 (delta 1), reused 0 (delta 0)
+remote: Resolving deltas: 100% (1/1), completed with 1 local object.
+To git@github.com:pavlo-taras/homework-vcs.git
+ * [new branch]      gh-pages -> gh-pages
+Branch gh-pages set up to track remote branch gh-pages from origin.
+
+link::        https://pavlo-taras.github.io/homework-vcs/
+
+MBP-pavlo:homework-vcs pavlo$ vim index.html
+MBP-pavlo:homework-vcs pavlo$ cat index.html
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    h1 {color: red;}
+    h2 {color: blue;}
+    h3 {background-color: green;}
+  </style>
+</head>
+<body>
+  <h1>Hello cursor</h1>
+  <h2>I am a student</h2>
+  <h3>VCS</h3>
+
+  <h1>gh-pages</h1>
+</body>
+</html>
+
+MBP-pavlo:homework-vcs pavlo$ git push
+Counting objects: 5, done.
+Delta compression using up to 8 threads.
+Compressing objects: 100% (5/5), done.
+Writing objects: 100% (5/5), 672 bytes | 0 bytes/s, done.
+Total 5 (delta 2), reused 0 (delta 0)
+remote: Resolving deltas: 100% (2/2), completed with 1 local object.
+To git@github.com:pavlo-taras/homework-vcs.git
+   f3a8476..cb8556f  gh-pages -> gh-pages
+
+--------------------------------------------------------------------------------
+Task 6
+MBP-pavlo:homework-vcs pavlo$ touch file.txt
+MBP-pavlo:homework-vcs pavlo$ vim file.txt
+MBP-pavlo:homework-vcs pavlo$ cat file.txt
+5. Git Pages (advanced level)
+ - створити бренч "gh-pages", вести роботу в ньому
+ - додати файл index.html з любим контентом (не пустий файл)
+ - коміт & пуш
+ - перейти по лінку: http://<username>.github.io/<repository-name>
+ - перевірити чи по лінку синхронізовані зміни з репозиторієм
+ - зробити зміни, commit & push, перевирити чи з'явилися зміни
+ - додатково читати: https://pages.github.com/
+
+MBP-pavlo:homework-vcs pavlo$ git add file.txt
+
+MBP-pavlo:homework-vcs pavlo$ git commit -m "Add file.txt"
+[master bea7626] Add file.txt
+ 1 file changed, 8 insertions(+)
+ create mode 100644 file.txt
+
+MBP-pavlo:homework-vcs pavlo$ git checkout branch-conflict
+6. Conflict (advanced level)
+ - в master зробити зміни в file.txt
+ - в branch зробити зміни в file.txt (несумісні з попередніми - наприклад повна заміна контенту файлу)
+ - змерджити бренч в мастер
+ - отримати конфлікт
+ - спробувати використати git merge --abort
+ - порезолвити конфлікт
+ - зробити успішний мердж
+
+MBP-pavlo:homework-vcs pavlo$ git add file.txt
+MBP-pavlo:homework-vcs pavlo$ git commit -m "Change file.txt for conflict"
+ [master bea7626] Add file.txt
+  1 file changed, 8 insertions(+)
+  create mode 100644 file.txt
+
+MBP-pavlo:homework-vcs pavlo$ git checkout master
+MBP-pavlo:homework-vcs pavlo$ git merge branch-conflict
+Auto-merging file.txt
+CONFLICT (add/add): Merge conflict in file.txt
+Automatic merge failed; fix conflicts and then commit the result.
+
+MBP-pavlo:homework-vcs pavlo$ git status
+On branch master
+Your branch is ahead of 'origin/master' by 1 commit.
+  (use "git push" to publish your local commits)
+You have unmerged paths.
+  (fix conflicts and run "git commit")
+
+Unmerged paths:
+  (use "git add <file>..." to mark resolution)
+
+	both added:      file.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+MBP-pavlo:homework-vcs pavlo$ cat file.txt
+<<<<<<< HEAD
+5. Git Pages (advanced level)
+ - створити бренч "gh-pages", вести роботу в ньому
+ - додати файл index.html з любим контентом (не пустий файл)
+ - коміт & пуш
+ - перейти по лінку: http://<username>.github.io/<repository-name>
+ - перевірити чи по лінку синхронізовані зміни з репозиторієм
+ - зробити зміни, commit & push, перевирити чи з'явилися зміни
+ - додатково читати: https://pages.github.com/
+=======
+6. Conflict (advanced level)
+ - в master зробити зміни в file.txt
+ - в branch зробити зміни в file.txt (несумісні з попередніми - наприклад повна заміна контенту файлу)
+ - змерджити бренч в мастер
+ - отримати конфлікт
+ - спробувати використати git merge --abort
+ - порезолвити конфлікт
+ - зробити успішний мердж
+>>>>>>> branch-conflict
+
+MBP-pavlo:homework-vcs pavlo$ git merge --abort
+MBP-pavlo:homework-vcs pavlo$ git status
+On branch master
+Your branch is ahead of 'origin/master' by 1 commit.
+  (use "git push" to publish your local commits)
+nothing to commit, working directory clean
+
+MBP-pavlo:homework-vcs pavlo$ cat file.txt
+5. Git Pages (advanced level)
+ - створити бренч "gh-pages", вести роботу в ньому
+ - додати файл index.html з любим контентом (не пустий файл)
+ - коміт & пуш
+ - перейти по лінку: http://<username>.github.io/<repository-name>
+ - перевірити чи по лінку синхронізовані зміни з репозиторієм
+ - зробити зміни, commit & push, перевирити чи з'явилися зміни
+ - додатково читати: https://pages.github.com/
+
+MBP-pavlo:homework-vcs pavlo$ git merge branch-conflict
+Auto-merging file.txt
+CONFLICT (add/add): Merge conflict in file.txt
+Automatic merge failed; fix conflicts and then commit the result.
+
+MBP-pavlo:homework-vcs pavlo$ vim file.txt
+MBP-pavlo:homework-vcs pavlo$ cat file.txt
+conflict (advanced level)
+в master зробити зміни в file.txt
+в branch зробити зміни в file.txt (несумісні з попередніми - наприклад повна заміна контенту файлу)
+змерджити бренч в мастер
+отримати конфлікт
+спробувати використати git merge --abort
+порезолвити конфлікт
+зробити успішний мердж
+
+MBP-pavlo:homework-vcs pavlo$ git add file.txt
+MBP-pavlo:homework-vcs pavlo$ git commit -m "Merge without conflict"
+[master 40217f9] Merge without conflict
+
+MBP-pavlo:homework-vcs pavlo$ git push
+
